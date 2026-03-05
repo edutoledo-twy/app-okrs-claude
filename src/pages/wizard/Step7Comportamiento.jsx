@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import WizardLayout from '../../components/WizardLayout'
 import { useApp } from '../../context/AppContext'
 
@@ -10,6 +11,7 @@ const RHYTHM = [
 ]
 
 export default function Step7Comportamiento() {
+  const navigate = useNavigate()
   const { activeCycle, updateNestedField } = useApp()
   const data = activeCycle?.behaviorPlan || {}
   const handleField = (key, value) => updateNestedField('behaviorPlan', key, value)
@@ -52,6 +54,13 @@ export default function Step7Comportamiento() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="flex justify-between mt-8">
+          <button onClick={() => navigate(-1)} className="btn-ghost">← Atrás</button>
+          <button onClick={() => navigate('/crear/resumen')} className="btn-primary">
+            Siguiente →
+          </button>
         </div>
       </div>
     </WizardLayout>
